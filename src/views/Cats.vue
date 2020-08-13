@@ -1,0 +1,24 @@
+<template>
+  <div>
+    <PetTable species="cats" :data="cats" />
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+import PetTable from '../components/PetTable.vue';
+
+export default {
+  components: {
+    PetTable,
+  },
+  data() {
+    return {
+      species: 'cats',
+    };
+  },
+  computed: {
+    ...mapState(['cats']),
+  },
+};
+</script>
