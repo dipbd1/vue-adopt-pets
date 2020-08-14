@@ -21,8 +21,8 @@ export default {
   watch: {
     $route() {
       if (Object.keys(this.$route.params).length === 0) {
+        console.log('watch triggered');
         this.showPet = false;
-        this.animal = null;
       }
     },
   },
@@ -30,9 +30,11 @@ export default {
     ...mapState(['cats', 'dogs']),
   },
   mounted() {
-    this.showPet = true;
-    const animalFromComponent = this[this.$route.params.species][this.$route.params.id];
-    this.animal = animalFromComponent;
+    if (Object.keys(this.$route.params).length !== 0) {
+      const animalFromComponent = this[this.$route.params.species][this.$route.params.id];
+      this.animal = animalFromComponent;
+      this.showPet = true;
+    }
   },
 };
 </script>
